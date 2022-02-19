@@ -6,6 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GeekCafe.SmtpUtility\GeekCafe.SmtpUtility.csproj" />
+    <None Remove="GeekCafe.SmtpUtility" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="GeekCafe.SmtpUtility" Version="1.0.0" />
   </ItemGroup>
 </Project>
