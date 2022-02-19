@@ -1,1 +1,1 @@
-GeekCafe.SmtpLib
+GeekCafe.SmtpUtility
