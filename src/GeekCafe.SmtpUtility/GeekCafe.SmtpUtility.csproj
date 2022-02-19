@@ -2,9 +2,24 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <Version>1.0.0</Version>
+    <Authors>Eric Wilson</Authors>
+    <Company>Geek Cafe LLC</Company>
+    <PackageId>GeekCafe.SmtpUtility</PackageId>
+    <PackageIcon>GeekCafe.png</PackageIcon>
+    <Description>Smtp Utility Service for consumption in .net core projects</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>http://github.com/geekcafe/GeekCafe.SmtpUtility</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GeekCafe.SmtpUtility.Interfaces\GeekCafe.SmtpUtility.Interfaces.csproj" />
+    <None Remove="GeekCafe.SmtpUtility.Interfaces" />
+  </ItemGroup>
+  <ItemGroup>
+       <None Include="images\GeekCafe.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="GeekCafe.SmtpUtility.Interfaces" Version="1.0.0" />
   </ItemGroup>
 </Project>
