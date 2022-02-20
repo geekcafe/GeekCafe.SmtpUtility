@@ -9,6 +9,6 @@
     <None Remove="GeekCafe.SmtpUtility" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="GeekCafe.SmtpUtility" Version="1.0.0" />
+    <PackageReference Include="GeekCafe.SmtpUtility" Version="1.0.3" />
   </ItemGroup>
 </Project>
