@@ -1,8 +1,5 @@
 #!/bin/bash
 
-nuget_api_key=""
-
-echo "your key is: ${1}"
 
 if [ -z "${1}" ]    
 then
@@ -13,8 +10,18 @@ else
     
     nuget_api_key="${1}"
 
-    echo "api key found."
-    # todo auto increment
+    # the project file
+    project_file=$(ls | grep *.csproj)     
+    echo $project_file
+       
+
+    # just store it in memory
+    version=$(grep '<Version>' < $project_file | sed 's/.*<Version>\(.*\)<\/Version>/\1/' | tee /dev/tty)    
+    
+    # get the package id
+    package_id=$(grep '<PackageId>' < $project_file | sed 's/.*<PackageId>\(.*\)<\/PackageId>/\1/' | tee /dev/tty)    
+    
+    echo "api key found."    
     # build it
     dotnet build --configuration Release
 
@@ -22,9 +29,11 @@ else
     dotnet pack --configuration Release
 
     # publish it
-    # skip duplicates
-    # todo get the version number automatically
-    dotnet nuget push bin/Release/GeekCafe.SmtpUtility.1.0.0.nupkg  -k "${nuget_api_key}"  -s https://api.nuget.org/v3/index.json --skip-duplicate
+    # skip duplicates    
+    dotnet nuget push bin/Release/${package_id}.${version}.nupkg  \
+        -k "${nuget_api_key}"  \
+        -s https://api.nuget.org/v3/index.json \
+        --skip-duplicate
 fi
 
 
