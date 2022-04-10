@@ -7,8 +7,10 @@
 
   <ItemGroup>
     <None Remove="GeekCafe.SmtpUtility" />
+    <None Remove="GeekCafe.Core.Utility" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GeekCafe.SmtpUtility" Version="1.0.3" />
+    <PackageReference Include="GeekCafe.Core.Utility" Version="1.0.3" />
   </ItemGroup>
 </Project>
