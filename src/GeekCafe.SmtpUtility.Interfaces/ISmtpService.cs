@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Mail;
 using System.Threading.Tasks;
 
@@ -19,5 +20,9 @@ namespace GeekCafe.SmtpUtility.Interfaces
             MailAddressCollection cc = null, MailAddressCollection bcc = null,
             AttachmentCollection attachments = null,
             bool throwExceptions = false);
+
+        MailAddressCollection GenerateMailAddressCollection(string emailAddresses);
+
+        MailAddressCollection GenerateMailAddressCollection(IEnumerable<string> emailAddresses);
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using GeekCafe.SmtpUtility.Interfaces;
@@ -152,6 +154,56 @@ namespace GeekCafe.SmtpUtility
                 ); 
         }
 
+        public MailAddressCollection GenerateMailAddressCollection(string emailAddresses)
+        {
+
+            MailAddressCollection collection = new MailAddressCollection();
+            var list = GenerateList(emailAddresses);
+
+            AddMailsToCollection(collection, list);
+
+            return collection;
+        }
+
+        public MailAddressCollection GenerateMailAddressCollection(IEnumerable<string> emailAddresses)
+        {
+            MailAddressCollection collection = new MailAddressCollection();
+            AddMailsToCollection(collection, emailAddresses);
+
+            return collection;
+        }
+
         
+
+        /// <summary>
+        /// Adds the mails to the address-collection.
+        /// </summary>
+        /// <param name="collection">The collection.</param>
+        /// <param name="addresses">The addresses.</param>
+        private MailAddressCollection AddMailsToCollection(MailAddressCollection collection, IEnumerable<string> addresses)
+        {
+            if (collection == null) collection = new MailAddressCollection();
+            foreach (string address in addresses)
+            {
+                if (!string.IsNullOrWhiteSpace(address))
+                {
+                    collection.Add(new MailAddress(address));
+                }
+                
+            }
+            
+            return collection;
+        }
+
+        private List<string> GenerateList(string emailAddresses)
+        {
+
+            emailAddresses = emailAddresses.Replace(";", ",");
+
+            var list = emailAddresses.Split(",").ToList();
+
+            return list;
+
+        }
     }
 }

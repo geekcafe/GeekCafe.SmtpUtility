@@ -66,12 +66,16 @@ namespace GeekCafe.Smtp.Cli
                 var displayName = Environment.GetEnvironmentVariable("SMTP_EMAIL_FROM_DISPLAY");
                 var toEamil = to ?? Environment.GetEnvironmentVariable("SMTP_EMAIL_TO");
 
+                var bcc = lib.GenerateMailAddressCollection("ericw1229@gmail.com; eric.wilson@webbasix.com, ewilson@webbasix.com");
+                var cc = lib.GenerateMailAddressCollection("eric.wilson+one@geekcafe.com; eric.wilson+two@geekcafe.com, ericw1229+one@gmail.com");
+
                 subject ??= $"Test email from c# cli using {host}:{port}";
                 var message = $"test message at {DateTime.UtcNow} UTC / {DateTime.Now} ET";
                 var t = Task.Run(async () =>
                 {
                     await lib.SendAsync(host, port, true, username, password, fromEmail, displayName,
-                        toEamil, "", subject, message, false);
+                        toEamil, "", subject, message, false,
+                        cc, bcc);
                 }
                 );
 
